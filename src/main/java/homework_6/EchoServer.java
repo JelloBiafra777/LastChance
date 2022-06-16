@@ -31,7 +31,9 @@ public class EchoServer {
                     while (true) {
 
                         String str = in.readUTF();
+
                         if (str.equals("/end")) {
+                            SendMessage("/end");
                             break;
                         }
                         System.out.println("Message from client " + str);
@@ -57,7 +59,6 @@ public class EchoServer {
                 String a = scanner.nextLine();
                 SendMessage(a);
                 if (a.equals("/end")) {
-                    thread1.stop();
                     break;
                 }
             }

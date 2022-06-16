@@ -35,7 +35,6 @@ public class EchoClient {
                 SendMessage(a);
 
                 if (a.equals("/end")) {
-                    thread.stop();
                     break;
                 }
             }
@@ -45,7 +44,6 @@ public class EchoClient {
         enterTextThread.start();
 
     }
-
 
     private void SendMessage(String message) {
 
@@ -65,8 +63,11 @@ public class EchoClient {
         thread = new Thread(() -> {
             try {
                 while (true) {
+
                     String message = in.readUTF();
+
                     if (message.equals("/end")) {
+                        SendMessage("/end");
                         break;
                     }
                     System.out.println("Message from server " + message);
